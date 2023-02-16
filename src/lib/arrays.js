@@ -1,6 +1,5 @@
 const getNthElement = (index, array) => {
-  const newIndex = index < array.length ? index : index - array.length;
-  return array[newIndex];
+  return array[index % array.length];
 };
 
 const arrayToCSVString = array => {
@@ -16,7 +15,9 @@ const addToArray = (element, array) => {
 };
 
 const addToArray2 = (element, array) => {
-  return array.concat(element);
+  const newArr = array.slice();
+  newArr.push(element);
+  return newArr;
 };
 
 const removeNthElement = (index, array) => {
@@ -24,7 +25,7 @@ const removeNthElement = (index, array) => {
 };
 
 function numbersToStrings(numbers) {
-  return numbers.toString().split(",");
+  return numbers.toString().split(',');
 }
 
 const uppercaseWordsInArray = strings => {
@@ -32,24 +33,31 @@ const uppercaseWordsInArray = strings => {
 };
 
 const reverseWordsInArray = strings => {
-  return strings.map(word => word.split('').reverse().join(''));
+  return strings.map(word =>
+    word
+      .split('')
+      .reverse()
+      .join(''),
+  );
 };
 
 const onlyEven = numbers => {
-  let the_evens = numbers.filter(number => number % 2 == 0);
+  const the_evens = numbers.filter(number => number % 2 == 0);
   return the_evens;
-}
+};
 const removeNthElement2 = (index, array) => {
- return array.filter((_, itemIndex) => itemIndex !== index);
+  const newArr = [...array];
+  newArr.splice(index, 1);
+  return newArr;
 };
 
 const elementsStartingWithAVowel = strings => {
- const vowels = ['a', 'e', 'i', 'o', 'u'];
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
 
- return strings.filter(word => {
-  const firstLetter = word[0].toLowerCase();
-  return vowels.includes(firstLetter);
- });
+  return strings.filter(word => {
+    const firstLetter = word[0].toLowerCase();
+    return vowels.includes(firstLetter);
+  });
 };
 
 const removeSpaces = string => {
@@ -64,9 +72,7 @@ function sumNumbers(numbers) {
 }
 
 const sortByLastLetter = strings => {
-  return strings.sort(
-    (a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1)
-  );
+  return strings.sort((a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1));
 };
 
 module.exports = {
@@ -84,5 +90,5 @@ module.exports = {
   elementsStartingWithAVowel,
   removeSpaces,
   sumNumbers,
-  sortByLastLetter
+  sortByLastLetter,
 };
